@@ -1,0 +1,27 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: micro-movie
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8888/eureka
+    #表示eureka的客户端间隔多久去获取服务注册信息，默认间隔是30s,可以修改为5s
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+#修改负载均衡的算法,RandomRule 随机
+micro-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+feign:
+  hystrix:
+    enabled: true
+
+
+
+#eureka做集群
+#修改 defaultZone: http://127.0.0.1:8888/eureka,http://127.0.0.1:9999/eureka

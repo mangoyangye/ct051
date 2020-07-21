@@ -1,0 +1,37 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: micro-user
+  datasource:
+    url:  jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+  jpa:
+    #是否打印sql语句
+    show-sql: true
+    #是否自动建表
+    generate-ddl: true
+    #jpa连接的数据库类型
+    database: mysql
+eureka:
+  client:
+    #作为客户端需要注册到eureka
+    register-with-eureka: true
+    #作为客户端需要从eureka获取注册信息
+    fetch-registry: true
+    #客户端注册地址
+    service-url:
+      defaultZone: http://127.0.0.1:8888/eureka
+  instance:
+    #优先使用该服务的ip地址注册到eureka
+    prefer-ip-address: true
+    #修改续约时间间隔
+    lease-expiration-duration-in-seconds: 5
+    #修改服务时效时间
+    lease-renewal-interval-in-seconds: 10
+
+
+#eureka做集群
+#修改 defaultZone: http://127.0.0.1:8888/eureka,http://127.0.0.1:9999/eureka
